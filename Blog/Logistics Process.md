@@ -1,5 +1,6 @@
 ---
 title: "Logistics Process"
+cover: "./Cover-Collection/letter_1.jpg"
 tags: ["Business Analytics", "Business Understanding"]
 ---
 # Social Post Series
