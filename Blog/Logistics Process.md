@@ -1,3 +1,7 @@
+---
+title: "Logistics Process"
+tags: ["Business Analytics", "Business Understanding"]
+---
 # Social Post Series
 - I built a framework for FADR improvement based on a six-hour analysis
 
