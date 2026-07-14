@@ -1,8 +1,6 @@
 ---
 title: "Logistics Process"
-cover:
-  type: image
-  path: ./Covers/letter_1.png
+cover: https://github.com/user-attachments/assets/5f186ee8-4bdd-4817-8578-44161ee7328e
 tags: ["Business Analytics", "Business Understanding"]
 ---
 # Social Post Series
