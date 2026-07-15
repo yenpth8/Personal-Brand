@@ -143,4 +143,4 @@ tags: ["Business Analytics", "Business Understanding"]
 - Formula
 - Component Explanation
 
-Edit content
+Edit content V2
