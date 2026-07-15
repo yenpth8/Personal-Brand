@@ -1,8 +1,6 @@
 ---
 title: "Logistics Process"
-cover:
-  type: image
-  path: ./Covers/letter_1.png
+cover: "https://github.com/user-attachments/assets/5f186ee8-4bdd-4817-8578-44161ee7328e"
 tags: ["Business Analytics", "Business Understanding"]
 ---
 # Social Post Series
@@ -72,6 +70,7 @@ tags: ["Business Analytics", "Business Understanding"]
             - Logistic corporrate (E-logistic corporate)
         - Business Model
             <!-- <iframe src="https://www.figma.com/board/RQAspWxOglJmn8miOxfQj3/Savvy-Space?node-id=407-19264&t=jQDPfdItnQIrqPI9-4"  width="800" height="450"allowfullscreen></iframe> -->
+
             ![BusinessModel](https://github.com/yenpth8/Cleona-Pham-Framer-Personal-Brand/blob/8f681bfea71c070805cf23e04469e7ba6c9ba47d/Blog/Assets/BusinessModel.png?raw=true)
 
             ```mermaid
