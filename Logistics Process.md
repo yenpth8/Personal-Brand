@@ -5,14 +5,14 @@ cover:
   path: ./Covers/letter_1.png
 tags: ["Business Analytics", "Business Understanding"]
 ---
-# Social Post Series
+## Social Post Series
 - I built a framework for FADR improvement based on a six-hour analysis
 
 
-# Topic
+## Topic
 - FADR: First Attempt Delivery Rate
 
-# Process
+## Process
 1. Business Understanding
 2. Metric Selection
 3. Diagnostic Analytics
@@ -20,7 +20,7 @@ tags: ["Business Analytics", "Business Understanding"]
 5. Prescriptive Analytics
 6. Experimental Monitoring
 
-# Business Understanding
+## Business Understanding
 - Framework used to understand Business
     - Macro -> Micro = High levels -> Low levels = Big picture -> Details
 
@@ -136,7 +136,7 @@ tags: ["Business Analytics", "Business Understanding"]
         - Without increasing budget/cost
 
 ---
-# Metric Selection
+## Metric Selection
 - Metric
 - Defition
 - Purpose
