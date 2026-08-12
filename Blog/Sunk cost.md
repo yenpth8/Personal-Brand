@@ -58,8 +58,7 @@ The results shown represent one possible historical outcome and do not capture t
 
 Let’s look at the data.
 
-<img src="https://github.com/yenpth8/Personal-Brand/blob/928cbd9abe8327dee21032d11be8d46164095e86/Blog/Assets/sunk_cost_image.png?raw=true">
-
+![Chart](https://github.com/yenpth8/Personal-Brand/blob/25cb433c0fb752a479ab5fe6587edf8b41215e7a/Blog/Assets/sunk_cost_image.png)
 
 The hundred million-VND gap on this chart looks incredible, right? But as working in data realm, I must be honest: **Data never lies, but it rarely tells the whole story.** When I strip away the 'filter' of assumptions, here is the 'Tuition Fee' of experience you actually face:
 
