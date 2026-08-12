@@ -58,6 +58,9 @@ The results shown represent one possible historical outcome and do not capture t
 
 Let’s look at the data.
 
+<img src="https://github.com/yenpth8/Personal-Brand/blob/928cbd9abe8327dee21032d11be8d46164095e86/Blog/Assets/sunk_cost_image.png?raw=true">
+
+
 The hundred million-VND gap on this chart looks incredible, right? But as working in data realm, I must be honest: **Data never lies, but it rarely tells the whole story.** When I strip away the 'filter' of assumptions, here is the 'Tuition Fee' of experience you actually face:
 
 1. **The Silent Leak (Taxes & Fees):** In models, we calculate net returns. In reality, every dividend and every exit costs you. Over 10 years, these are not small numbers.
