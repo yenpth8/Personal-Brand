@@ -1,5 +1,3 @@
-# Application of Statistics in Time Series Analysis
-
 # 1. Load libraries and packages
 
 
@@ -109,23 +107,7 @@ import math
 ```python
 google_stock = pd.read_csv("stock-time-series-20050101-to-20171231\GOOGL_2006-01-01_to_2018-01-01.csv", index_col="Date", parse_dates=["Date"])
 google_stock.head()
-```
-
-    <>:1: SyntaxWarning:
-    
-    invalid escape sequence '\G'
-    
-    <>:1: SyntaxWarning:
-    
-    invalid escape sequence '\G'
-    
-    C:\Users\yenpth8\AppData\Local\Temp\ipykernel_14780\1069917469.py:1: SyntaxWarning:
-    
-    invalid escape sequence '\G'
-    
-    
-
-
+```    
 
 
 <div>
@@ -220,22 +202,6 @@ google_stock.head()
 humidity = pd.read_csv("historical-hourly-weather-data\humidity.csv", index_col="datetime", parse_dates=["datetime"])
 humidity.tail()
 ```
-
-    <>:1: SyntaxWarning:
-    
-    invalid escape sequence '\h'
-    
-    <>:1: SyntaxWarning:
-    
-    invalid escape sequence '\h'
-    
-    C:\Users\yenpth8\AppData\Local\Temp\ipykernel_14780\2666078636.py:1: SyntaxWarning:
-    
-    invalid escape sequence '\h'
-    
-    
-
-
 
 
 <div>
