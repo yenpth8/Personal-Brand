@@ -1,10 +1,8 @@
-# 1. Load libraries and packages
-
+## 1. Load libraries and packages
 
 ```python
 from statsmodels.tsa.ar_model import AutoRegResults
 ```
-
 
 ```python
 import pandas as pd 
@@ -40,7 +38,6 @@ from statsmodels.tsa.stattools import adfuller
 
 # Random array
 from numpy.random import normal, seed
-
 from plotly.offline import iplot
 
 # Modeling 
@@ -50,7 +47,6 @@ from statsmodels.tsa.ar_model import AutoReg, ar_select_order
 ## Moving Average Model
 # from statsmodels.tsa.arima.model import ARMA
 from statsmodels.tsa.arima.model import ARIMA
-
 
 # Mathematic operations
 import math
@@ -68,7 +64,7 @@ import math
 - `rcParams` is a configuration object used to customize default settings in Matplotlib visualizations.
     - It allows users to globally adjust figure size, font, style, and other plot parameters without repeating settings across plots. This improves consistency and reduces boilerplate code in data visualization workflows.
 
-# Dataset Information
+## Dataset Information
 
 1. [DJIA 30 Stock Time Series](https://www.kaggle.com/datasets/szrlee/stock-time-series-20050101-to-20171231)
 2. [Historical Hourly Weather Data 2012-2017](https://www.kaggle.com/datasets/selfishgene/historical-hourly-weather-data)
@@ -82,15 +78,10 @@ import math
 
 
 ```python
-# pip install kagglehub
-```
-
-
-```python
 # import kagglehub
 
 # # Download latest version
-# path = kagglehub.dataset_download("szrlee/stock-time-series-20050101-to-20171231")
+# path = kagglehub.dataset_download("szrlee/stock-time-series")
 
 # print("Path to dataset files:", path)
 ```
@@ -105,7 +96,7 @@ import math
 
 
 ```python
-google_stock = pd.read_csv("stock-time-series-20050101-to-20171231\GOOGL_2006-01-01_to_2018-01-01.csv", index_col="Date", parse_dates=["Date"])
+google_stock = pd.read_csv("stock-time-series\GOOGL_2006-01-01_to_2018-01-01.csv", index_col="Date", parse_dates=["Date"])
 google_stock.head()
 ```    
 
@@ -194,8 +185,6 @@ google_stock.head()
   </tbody>
 </table>
 </div>
-
-
 
 
 ```python
@@ -396,16 +385,15 @@ humidity.tail()
 </div>
 
 
-
-
 ```python
 # Set color palette
 palette = sns.color_palette("Set2") 
 ```
 
-# 2. Exploration Data Analysis
+## 2. Exploration Data Analysis
 
-# 2.1 Stock Dataset
+
+### 2.1 Stock Dataset
 
 
 ```python
@@ -457,8 +445,6 @@ pd.date_range(start='2006-01-03', end='2017-12-29')
 ```
 
 
-
-
     DatetimeIndex(['2006-01-03', '2006-01-04', '2006-01-05', '2006-01-06',
                    '2006-01-07', '2006-01-08', '2006-01-09', '2006-01-10',
                    '2006-01-11', '2006-01-12',
@@ -467,7 +453,6 @@ pd.date_range(start='2006-01-03', end='2017-12-29')
                    '2017-12-24', '2017-12-25', '2017-12-26', '2017-12-27',
                    '2017-12-28', '2017-12-29'],
                   dtype='datetime64[ns]', length=4379, freq='D')
-
 
 
 - About time range:
@@ -479,8 +464,6 @@ google_stock.isnull().sum()
 ```
 
 
-
-
     Open      0
     High      0
     Low       0
@@ -490,25 +473,16 @@ google_stock.isnull().sum()
     dtype: int64
 
 
-
-
 ```python
 google_stock.duplicated().sum()
 ```
 
-
-
-
     np.int64(0)
-
-
 
 
 ```python
 google_stock.describe()
 ```
-
-
 
 
 <div>
@@ -606,7 +580,6 @@ google_stock.describe()
 </div>
 
 
-
 - About the variability:
     - Haven't found any great range between Open, High, Low, Close in almost all of the statistical metrics.
 
@@ -616,13 +589,10 @@ google_stock.shape
 ```
 
 
-
-
     (3019, 6)
 
 
-
-### 2.1.1. Growth rate daily of Google stock
+#### 2.1.1. Growth rate daily of Google stock
 
 - Growth rate is the percentage change in the value of a variable over a period of time.
     - The important metric in stock market.
@@ -638,18 +608,11 @@ google_stock['High'].pct_change(freq='D').add(1).plot(figsize=(20,8), color = pa
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_25_1.png)
     
-
-
 
 ```python
 google_stock['Change'] = google_stock['High'].div(google_stock['High'].shift(1, freq='D'))
@@ -663,18 +626,11 @@ google_stock['Low'].pct_change(periods=1, freq='D').add(1).plot(figsize=(20,8), 
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_27_1.png)
     
-
-
 
 ```python
 # Percent change in Open price of Google stock
@@ -682,18 +638,11 @@ google_stock['Open'].pct_change(periods=1, freq='D').add(1).plot(figsize=(20,8),
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_28_1.png)
     
-
-
 
 ```python
 # Percent change in Close price of Google stock
@@ -701,18 +650,11 @@ google_stock['Close'].pct_change(periods=1, freq='D').add(1).plot(figsize=(20,8)
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_29_1.png)
     
-
-
 
 ```python
 # Percent change in Volume of Google stock
@@ -720,19 +662,13 @@ google_stock['Volume'].pct_change(periods=1, freq='D').add(1).plot(figsize=(20,8
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_30_1.png)
     
 
-
-### 2.1.2. Stock returns
+#### 2.1.2. Stock returns
 
 -  Stock return is the percentage of change in the stock price from one period to the next.
     - Formula: (Current Value - Previous Value) / Previous Value
@@ -741,8 +677,6 @@ google_stock['Volume'].pct_change(periods=1, freq='D').add(1).plot(figsize=(20,8
 ```python
 google_stock['Change'].sub(1).mul(100)
 ```
-
-
 
 
     Date
@@ -760,24 +694,16 @@ google_stock['Change'].sub(1).mul(100)
     Name: Change, Length: 3019, dtype: float64
 
 
-
-
 ```python
 google_stock['Change'].sub(1).mul(100).plot(figsize=(20,8), color = palette[2])
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_34_1.png)
     
-
 
 - `sub` is a method used to perform element-wise subtraction on a pandas Series or DataFrame.
     - It is typically called on a data column to subtract a scalar value or another series from each element, often used in financial or time-series calculations to compute changes or differences.
@@ -798,8 +724,6 @@ google_stock['High'].pct_change().add(1)
 ```
 
 
-
-
     Date
     2006-01-03         NaN
     2006-01-04    1.030498
@@ -815,13 +739,9 @@ google_stock['High'].pct_change().add(1)
     Name: High, Length: 3019, dtype: float64
 
 
-
-
 ```python
 google_stock['High'].pct_change()
 ```
-
-
 
 
     Date
@@ -839,13 +759,9 @@ google_stock['High'].pct_change()
     Name: High, Length: 3019, dtype: float64
 
 
-
-
 ```python
 google_stock['High'].div(google_stock['High'].shift(1, freq='D')).sub(1)
 ```
-
-
 
 
     Date
@@ -863,13 +779,9 @@ google_stock['High'].div(google_stock['High'].shift(1, freq='D')).sub(1)
     Name: High, Length: 3672, dtype: float64
 
 
-
-
 ```python
 google_stock['High'].pct_change().mul(100) # Another way to calculate return
 ```
-
-
 
 
     Date
@@ -887,15 +799,12 @@ google_stock['High'].pct_change().mul(100) # Another way to calculate return
     Name: High, Length: 3019, dtype: float64
 
 
-
-### 2.1.3. Specific value of change
+#### 2.1.3. Specific value of change
 
 
 ```python
 google_stock['High'].diff(periods = 1)
 ```
-
-
 
 
     Date
@@ -913,29 +822,22 @@ google_stock['High'].diff(periods = 1)
     Name: High, Length: 3019, dtype: float64
 
 
-
-
 ```python
 google_stock['High'].diff(periods = 1).plot(figsize = (20, 8), color = palette[2])
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_42_1.png)
     
 
-
 - `diff` is a method used to compute the difference between consecutive elements in a time series or sequence.
     - It is commonly applied in data analysis and time series modeling to transform non-stationary data into stationary data by removing trends, which helps in preparing data for statistical modeling such as ARIMA or other forecasting techniques.
 
-## 2.1.4. Compare two or more timeseries
+
+#### 2.1.4. Compare two or more timeseries
 
 
 - Compare 2 time series by normalizing them. 
@@ -945,25 +847,10 @@ google_stock['High'].diff(periods = 1).plot(figsize = (20, 8), color = palette[2
 
 ```python
 # Import dataset of microsoft stock
-microsoft_stock = pd.read_csv('stock-time-series-20050101-to-20171231\MSFT_2006-01-01_to_2018-01-01.csv', 
+microsoft_stock = pd.read_csv('stock-time-series\MSFT_2006-01-01_to_2018-01-01.csv', 
                         index_col='Date', 
                         parse_dates=['Date'])
 ```
-
-    <>:2: SyntaxWarning:
-    
-    invalid escape sequence '\M'
-    
-    <>:2: SyntaxWarning:
-    
-    invalid escape sequence '\M'
-    
-    C:\Users\yenpth8\AppData\Local\Temp\ipykernel_14780\2705525054.py:2: SyntaxWarning:
-    
-    invalid escape sequence '\M'
-    
-    
-
 
 ```python
 # Ploting the absolute value of the Highest price in each time series
@@ -974,12 +861,9 @@ plt.show()
 
 ```
 
-
-    
+  
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_47_0.png)
     
-
-
 
 ```python
 # Normalizing and Comparison both stocks 
@@ -994,16 +878,14 @@ plt.show()
 ```
 
 
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_48_0.png)
     
-
 
 - Conclusion:
     - See clearly how google outperforms microsoft over time.
 
 
-## 2.1.5. Window functions
+#### 2.1.5. Window functions
 
 - **What are Window functions and how are they useful?**
     - Window functions are used to identify sub periods, calculates sub-metrics of sub-periods.
@@ -1027,8 +909,6 @@ google_stock['High']
 ```
 
 
-
-
     Date
     2006-01-03     218.05
     2006-01-04     224.70
@@ -1044,15 +924,12 @@ google_stock['High']
     Name: High, Length: 3019, dtype: float64
 
 
-
-### Rolling Window
+##### Rolling Window
 
 
 ```python
 google_stock['High'].rolling(window='90D').mean()
 ```
-
-
 
 
     Date
@@ -1070,7 +947,6 @@ google_stock['High'].rolling(window='90D').mean()
     Name: High, Length: 3019, dtype: float64
 
 
-
 - [`pandas.DataFrame.rolling`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rolling.html#pandas.DataFrame.rolling) is a method in pandas used to define a rolling window for time series or sequential data analysis.
     - It enables the calculation of rolling (moving) statistics such as mean, standard deviation, sum, etc., over a specified window size.
     - Params: Takes a required `window` parameter (int, timedelta, str, offset, or BaseIndexer subclass) specifying the number of periods to include in the rolling calculation. Optional parameters include `min_periods`, `center`, `win_type`, etc.
@@ -1085,16 +961,14 @@ plt.legend()
 plt.show()
 ```
 
-
-    
+  
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_55_0.png)
     
-
 
 - Usecase:
     - Rolling mean plot is a smoother version of the original plot.
 
-### Expand Window
+##### Expand Window
 
 
 ```python
@@ -1106,16 +980,14 @@ plt.show()
 ```
 
 
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_58_0.png)
     
 
+#### 2.1.6. OHLC charts [Soon!]
 
-## 2.1.6. OHLC charts [Soon!]
+#### 2.1.7. Candlestick charts [Soon!]
 
-## 2.1.7. Candlestick charts [Soon!]
-
-## 2.1.8. Trends, Seasonality, Noise
+#### 2.1.8. Trends, Seasonality, Noise
 
 - These are the components of a time series
     - Trend - Consistent upwards or downwards slope of a time series
@@ -1131,17 +1003,8 @@ plt.show()
 ```
 
 
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_62_0.png)
-    
-
-
-| Bước                                           | Mô tả kỹ thuật                                                                                | Giải thích dễ hiểu                                                                       |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Bước 1: Ước lượng Trend (xu hướng)**         | Dùng **moving average (trung bình trượt)** với chu kỳ bằng `period` hoặc `freq` bạn cung cấp. | Làm mượt dữ liệu để thấy đường “nền” dài hạn — ví dụ: giá cổ phiếu đang đi lên theo năm. |
-| **Bước 2: Loại bỏ Trend khỏi chuỗi gốc**       | Tính phần dư tạm thời:  `Yt - Tt` (với additive) hoặc `Yt / Tt` (với multiplicative).         | Sau khi bỏ xu hướng dài hạn, phần còn lại là biến động ngắn hạn (seasonality + noise).   |
-| **Bước 3: Ước lượng Seasonal (mùa vụ)**        | Gom các giá trị theo chu kỳ (ví dụ: trung bình của tất cả tháng 1, tháng 2, …).               | Xác định mẫu lặp lại đều đặn trong năm / tháng / tuần.                                   |
-| **Bước 4: Tính Residual (phần dư ngẫu nhiên)** | Lấy phần còn lại: `Rt = Yt - Tt - St` (hoặc `Yt / (Tt × St)`)                                 | Phần không thể giải thích – thể hiện yếu tố bất thường hoặc sai số đo lường.             |
+            |
 
 - Trend (Manual caculation)
 
@@ -1151,18 +1014,11 @@ google_stock["High"].rolling(window='360D').mean().plot(figsize = (20, 4), label
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_65_1.png)
     
-
-
 
 ```python
 # google_stock.drop(['Seasonal_noise_D'], axis = 1)
@@ -1177,18 +1033,11 @@ google_stock['Seasonal_noise_90D'].plot(figsize = (20, 4), label = 'Seasonal + N
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_68_1.png)
     
-
-
 
 ```python
 seasonal_means = google_stock['Seasonal_noise_90D'].groupby(google_stock.index.quarter).mean()
@@ -1198,17 +1047,11 @@ google_stock['seasonal_90D'].plot(figsize = (20, 8), label = 'Seasonal', color =
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_69_1.png)
     
-
 
 - Seasonal by Week (Manual caculation)
 
@@ -1218,19 +1061,11 @@ google_stock['Seasonal_noise_7D'] = google_stock["High"] - google_stock["High"].
 google_stock['Seasonal_noise_7D'].plot(figsize = (20, 4), label = 'Seasonal + Noise', color = palette[2])
 ```
 
-
-
-
     <Axes: xlabel='Date'>
 
-
-
-
-    
+  
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_71_1.png)
     
-
-
 
 ```python
 seasonal_means = google_stock['Seasonal_noise_7D'].groupby(google_stock.index.isocalendar().week).mean()
@@ -1242,17 +1077,11 @@ google_stock['seasonal_7D'].plot(figsize = (20, 8), label = 'Seasonal', color = 
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_72_1.png)
     
-
 
 - Seasonal by 2 Weeks (Manual caculation)
 
@@ -1263,18 +1092,11 @@ google_stock['Seasonal_noise_14D'].plot(figsize = (20, 4), label = 'Seasonal + N
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_74_1.png)
     
-
-
 
 ```python
 seasonal_means = google_stock['Seasonal_noise_14D'].groupby((google_stock.index.isocalendar().week - 1)//2 + 1).mean()
@@ -1286,17 +1108,11 @@ google_stock['seasonal_14D'].plot(figsize = (20, 8), label = 'Seasonal', color =
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_75_1.png)
     
-
 
 - Seasonal by 4 Days (Manual caculation)
 
@@ -1307,17 +1123,11 @@ google_stock['Seasonal_noise_4D'].plot(figsize = (20, 4), label = 'Seasonal + No
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_77_1.png)
     
-
 
 
 ```python
@@ -1330,17 +1140,11 @@ google_stock['seasonal_4D'].plot(figsize = (20, 8), label = 'Seasonal', color = 
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_78_1.png)
     
-
 
 - Seasonal by Month (Manual caculation)
 
@@ -1351,18 +1155,11 @@ google_stock['Seasonal_noise_Month'].plot(figsize = (20, 4), label = 'Seasonal +
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_80_1.png)
     
-
-
 
 ```python
 seasonal_means = google_stock['Seasonal_noise_Month'].groupby(google_stock.index.month).mean()
@@ -1374,17 +1171,11 @@ google_stock['seasonal_Month'].plot(figsize = (20, 8), label = 'Seasonal', color
 ```
 
 
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_81_1.png)
     
-
 
 - Residual (Manual caculation)
 
@@ -1396,17 +1187,11 @@ google_stock['residual'].plot(figsize = (20, 8), label = 'Trend', color = palett
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_83_1.png)
     
-
 
 | Component    | What it means                                                    | Business translation                                                                                    |
 | ------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -1436,7 +1221,7 @@ google_stock['residual'].plot(figsize = (20, 8), label = 'Trend', color = palett
     - Plotting: The result has a .plot() method that visualizes all components
         - Note: The freq parameter is deprecated in newer versions of statsmodels; period is preferred.
 
-## 2.1.9. White noise
+#### 2.1.9. White noise
 
 - Note: Don't know the reason why "White noise" existing in this report.
 
@@ -1457,17 +1242,11 @@ plt.plot(white_noise)
 ```
 
 
-
-
     [<matplotlib.lines.Line2D at 0x2415574ae90>]
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_88_1.png)
     
-
 
 - See random ups and downs without trend or pattern.
 
@@ -1478,11 +1257,9 @@ plot_acf(white_noise,lags=20)
 plt.show()
 ```
 
-
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_90_0.png)
     
-
 
 - If compute ACF (autocorrelation function), all lags ≈ 0 → confirms it’s white noise.
 
@@ -1508,7 +1285,7 @@ plt.show()
 | **Process control** | In manufacturing or operations, output should behave like white noise if process is stable | Any pattern → problem in production |
 
 
-## 2.1.10. Random Walk
+#### 2.1.10. Random Walk
 
 A random walk is a mathematical object, known as a stochastic or random process, that describes a path that consists of a succession of random steps on some mathematical space such as the integers.
 
@@ -1646,7 +1423,6 @@ An augmented Dickey–Fuller test (ADF) tests the null hypothesis that a unit ro
     $\Delta P_t = \alpha + \gamma P_{t-1} + \sum_{i=1}^{p}\delta_i \Delta P_{t-i} + \varepsilon_t$
 
 
-
 ```python
 # Augmented Dicky-Fuller (ADF) Test om Volume of Google Stock
 ggs_adf = adfuller(google_stock['Volume'])
@@ -1719,7 +1495,7 @@ iplot(fig, filename='Basic Distplot')
     - Side effects: Generates an interactive Plotly figure object.
     - Returns: A Plotly Figure object containing the distribution plot, which can be rendered using iplot.
 
-## 2.1.11. Stationarity
+#### 2.1.11. Stationarity
 
 - A stationary time series is one whose statistical properties such as mean, variance, autocorrelation, etc. are all constant over time.
     - Strong stationarity: is a stochastic process whose unconditional joint probability distribution does not change when shifted in time. Consequently, parameters such as mean and variance also do not change over time.
@@ -1735,33 +1511,20 @@ decomposed_google_volume.trend.plot()
 ```
 
 
-
-
     <Axes: xlabel='Date'>
-
-
-
 
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_108_1.png)
     
-
-
 
 ```python
 # Convert A non-stationary series to the new stationary plot <> The residual
 decomposed_google_volume.trend.diff().plot()
 ```
 
-
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_109_1.png)
     
 
@@ -1776,25 +1539,18 @@ decomposed_google_volume.trend.diff().plot()
         - Side effects: None — it returns a transformed copy
 
 
-
 ```python
 decomposed_google_volume.resid.plot()
 ```
 
-
-
-
     <Axes: xlabel='Date'>
 
 
-
-
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_111_1.png)
     
 
 
-# 2.2 Humidity Dataset
+### 2.2 Humidity Dataset
 
 
 ```python
@@ -1860,8 +1616,6 @@ humidity.info()
 ```python
 pd.date_range(start='2012-10-01 12:00:00', end='2017-11-30 00:00:00', freq='h')
 ```
-
-
 
 
     DatetimeIndex(['2012-10-01 12:00:00', '2012-10-01 13:00:00',
@@ -2438,16 +2192,11 @@ humidity.tail()
 humidity = humidity.fillna(method='bfill')
 
 ```
-
-    C:\Users\yenpth8\AppData\Local\Temp\ipykernel_14780\3131857391.py:1: FutureWarning:
-    
-    DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
-    
     
 
 - Google stocks data doesn't have any missing values but humidity data does have its fair share of missing values. It is cleaned using fillna() method with ffill parameter which propagates last valid observation to fill gaps.
 
-## 2.2.1. The relationship of Observations at different time lags
+#### 2.2.1. The relationship of Observations at different time lags
 
 - The relationship of Observations at different time lags, having 3 concepts:
     - AutoCorrelation
@@ -2462,7 +2211,7 @@ humidity = humidity.fillna(method='bfill')
 | Giai đoạn sử dụng    | Trước khi modeling     | Trước khi modeling                        | Sau khi modeling                       |
 | Biểu đồ kỳ vọng      | Giảm dần hoặc dao động | Cắt đột ngột                              | Gần như 0 (nếu model tốt)              |
 
-### AutoCorrelation
+##### AutoCorrelation
 
 - Careful note:
     - Autocorrelation can't present if having any null data/missing data in dataset.
@@ -2473,12 +2222,9 @@ humidity = humidity.fillna(method='bfill')
 plot_acf(humidity['San Diego'], lags=25, title = 'San Diego', color = palette[2])
 plt.show()
 ```
-
-
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_130_0.png)
     
-
 
 - As all lags are either close to 1 or at least greater than the confidence interval, they are statistically significant.
     - It checks how much today’s humidity is related to the humidity of previous days (1 day ago, 2 days ago, etc.).
@@ -2497,7 +2243,7 @@ plt.show()
     - Returns:
         - A matplotlib `Figure` object (not explicitly returned but created implicitly).
 
-### Partial AutoCorrelation
+##### Partial AutoCorrelation
 
 
 ```python
@@ -2505,12 +2251,9 @@ plt.show()
 plot_pacf(humidity['San Diego'],lags=25, color = palette[2])
 plt.show()
 ```
-
-
     
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_134_0.png)
     
-
 
 - Though it is statistically signficant, partial autocorrelation after first 2 lags is very low.
 
@@ -2522,7 +2265,6 @@ plt.show()
 ```
 
 
-    
 ![png](Time_Series_Analysis_Assets/251004_Time_Series_Analysis_136_0.png)
     
 
