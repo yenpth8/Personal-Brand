@@ -1,3 +1,7 @@
+---
+title: "Time Series Analysis (Part 1).md"
+tags: ["Framework"]
+---
 ## 1. Load libraries and packages
 
 ```python
